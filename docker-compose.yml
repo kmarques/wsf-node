@@ -1,0 +1,29 @@
+version: '3'
+services:
+    node:
+      image: 'node:14-alpine'
+      volumes:
+        - './:/home/node/app'
+      working_dir: '/home/node/app'
+      ports:
+        - '3000:3000'
+      command: 'sh -c "npm install; npm start"'
+
+    db:
+      # In production, you may want to use a managed database service
+      image: postgres:9.6-alpine
+      environment:
+      - POSTGRES_DB=node-wsf
+      - POSTGRES_USER=root
+      # You should definitely change the password in production
+      - POSTGRES_PASSWORD=password
+      volumes:
+      - db-data:/var/lib/postgresql/data:rw
+    # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
+    # - ./docker/db/data:/var/lib/postgresql/data:rw
+      ports:
+      - '5432:5432'
+
+
+volumes:
+    db-data: {}
