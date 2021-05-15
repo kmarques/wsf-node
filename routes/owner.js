@@ -1,30 +1,30 @@
 const express = require("express");
-const { Vehicule } = require("../db/models/index");
+const { Owner } = require("../db/models/index");
 const { prettifyErrors } = require("../lib/utils");
 
 const router = express.Router();
 
-router.get("/vehicules", function (req, res) {
-  Vehicule.findAll({
+router.get("/owners", function (req, res) {
+  Owner.findAll({
     where: req.query,
   }).then((data) => {
     res.json(data);
   });
 });
 
-router.get("/vehicules/:id", function (req, res) {
+router.get("/owners/:id", function (req, res) {
   const id = req.params.id;
 
-  Vehicule.findByPk(id).then((data) => {
+  Owner.findByPk(id).then((data) => {
     if (data) res.json(data);
     else res.sendStatus(404);
   });
 });
 
-router.delete("/vehicules/:id", function (req, res) {
+router.delete("/owners/:id", function (req, res) {
   const id = req.params.id;
 
-  Vehicule.destroy({
+  Owner.destroy({
     where: {
       id,
     },
@@ -34,8 +34,8 @@ router.delete("/vehicules/:id", function (req, res) {
   });
 });
 
-router.post("/vehicules", function (req, res) {
-  Vehicule.create(req.body)
+router.post("/owners", function (req, res) {
+  Owner.create(req.body)
     .then((data) => res.status(201).json(data))
     .catch((e) => {
       if (e.name === "SequelizeValidationError") {
@@ -46,14 +46,14 @@ router.post("/vehicules", function (req, res) {
     });
 });
 
-router.put("/vehicules/:id", function (req, res) {
+router.put("/owners/:id", function (req, res) {
   const id = req.params.id;
 
-  Vehicule.update(req.body, { where: { id }, individualHooks: true })
+  Owner.update(req.body, { where: { id }, individualHooks: true })
     .then(([nbUpdated]) => {
       if (nbUpdated === 0) res.sendStatus(404);
       else
-        Vehicule.findByPk(id).then((data) => {
+        Owner.findByPk(id).then((data) => {
           res.json(data);
         });
     })

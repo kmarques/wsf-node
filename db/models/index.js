@@ -2,6 +2,7 @@ const db = require("../db");
 
 const Vehicule = require("./Vehicule");
 const Concessionaire = require("./Concessionaire");
+const Owner = require("./Owner");
 
 db.sync({
   alter: true,
@@ -12,4 +13,5 @@ db.sync({
 module.exports = {
   Vehicule,
   Concessionaire,
+  Owner,
 };

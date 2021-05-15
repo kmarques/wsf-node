@@ -1,27 +1,137 @@
-GET http://localhost:3009/vehicules
+#######################
+###    Vehicules    ###
+#######################
+### GET ALL
+GET http://localhost:3000/vehicules
 
-###
-GET http://localhost:3000/vehicules?marque=peugeot&model[]=307&model[]=3008
-
-###
-GET http://localhost:3000/vehicules/7
-
-###
-DELETE http://localhost:3000/vehicules/2
-
-###
+### POST
 POST http://localhost:3000/vehicules
 Content-Type: application/json
 
 {
-    "marque": "peugeot"
+    "marque": "Opel",
+    "model": "Tigra"
 }
 
+### POST avec erreurs
+POST http://localhost:3000/vehicules
+Content-Type: application/json
 
-###
+{
+    "dateFabrication": "1740-12-01"
+}
+
+### GET One
+GET http://localhost:3000/vehicules/1
+
+### PUT
 PUT http://localhost:3000/vehicules/1
 Content-Type: application/json
 
 {
-    "marque": "renault"
+    "marque": "Opel"
 }
+
+### PUT avec erreurs
+PUT http://localhost:3000/vehicules/1
+Content-Type: application/json
+
+{
+    "marque": null,
+    "dateFabrication": "1740-12-01"
+}
+
+### DELETE
+DELETE http://localhost:3000/vehicules/1
+
+#############################
+###    Concessionaires    ###
+#############################
+### GET ALL
+GET http://localhost:3000/concessionaires
+
+### POST
+POST http://localhost:3000/concessionaires
+Content-Type: application/json
+
+{
+    "address": "5 rue Opel",
+    "proprietaire": "Opel (R)"
+}
+
+### POST avec erreurs
+POST http://localhost:3000/concessionaires
+Content-Type: application/json
+
+{
+}
+
+### GET One
+GET http://localhost:3000/concessionaires/1
+
+### PUT
+PUT http://localhost:3000/concessionaires/1
+Content-Type: application/json
+
+{
+    "address": "6 rue Opel"
+}
+
+### PUT avec erreurs
+PUT http://localhost:3000/concessionaires/1
+Content-Type: application/json
+
+{
+    "address": null
+}
+
+### DELETE
+DELETE http://localhost:3000/concessionaires/1
+
+####################
+###    Owners    ###
+####################
+### GET ALL
+GET http://localhost:3000/owners
+
+### POST
+POST http://localhost:3000/owners
+Content-Type: application/json
+
+{
+    "firstname": "Jean",
+    "lastname": "Dupond",
+    "birthday": "1980-01-01",
+    "licenseType": "voiture"
+}
+
+### POST avec erreurs
+POST http://localhost:3000/owners
+Content-Type: application/json
+
+{
+    "birthday": "2020-05-01",
+    "licenseType": "camion"
+}
+
+### GET One
+GET http://localhost:3000/owners/1
+
+### PUT
+PUT http://localhost:3000/owners/1
+Content-Type: application/json
+
+{
+    "lastname": "Dupont"
+}
+
+### PUT avec erreurs
+PUT http://localhost:3000/owners/1
+Content-Type: application/json
+
+{
+    "licenseType": "camion"
+}
+
+### DELETE
+DELETE http://localhost:3000/owners/1

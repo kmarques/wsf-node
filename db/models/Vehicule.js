@@ -15,6 +15,10 @@ Vehicule.init(
     },
     dateFabrication: {
       type: DataTypes.DATE,
+      validate: {
+        isDate: true,
+        isAfter: new Date("1850-01-01"),
+      },
     },
   },
   {
